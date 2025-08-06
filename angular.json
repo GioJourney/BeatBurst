@@ -46,7 +46,7 @@
               "sourceMap": true
             },
             "tauri": {
-              "optimization": true,
+              "optimization": false,
               "outputHashing": "all",
               "sourceMap": false,
               "extractLicenses": true,
