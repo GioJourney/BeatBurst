@@ -2,5 +2,5 @@
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 
 fn main() {
-    yt_to_mp3_lib::run()
+    beatburst_lib::run()
 }
