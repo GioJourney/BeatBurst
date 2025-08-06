@@ -1,15 +1,18 @@
 {
-  "name": "yt-to-mp3",
+  "name": "beatburst",
   "version": "0.1.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
+    "start": "ng serve beatburst",
+    "build": "ng build beatburst",
     "build:tauri": "ng build --configuration tauri",
     "watch": "ng build --watch --configuration development",
     "tauri": "tauri",
     "tauri:dev": "tauri dev",
-    "tauri:build": "tauri build"
+    "tauri:build": "tauri build",
+    "download-yt-dlp": "node scripts/download-yt-dlp.js",
+    "download-ffmpeg": "node scripts/download-ffmpeg.js",
+    "setup": "npm install && npm run download-yt-dlp && npm run download-ffmpeg"
   },
   "private": true,
   "dependencies": {
@@ -23,6 +26,7 @@
     "@angular/router": "^20.1.4",
     "@tauri-apps/api": "^2.7.0",
     "@tauri-apps/plugin-opener": "^2.4.0",
+    "animejs": "^4.1.2",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.15.1"

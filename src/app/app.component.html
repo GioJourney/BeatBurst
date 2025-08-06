@@ -1,19 +1,160 @@
-<main class="container">
-  <h1>Welcome to Tauri + Angular!</h1>
+<!-- Legal Disclaimer Modal -->
+<div class="legal-overlay" *ngIf="showLegalNotice" role="dialog" aria-labelledby="legal-title" aria-describedby="legal-content">
+  <div class="legal-modal">
+    <div class="legal-header">
+      <h2 id="legal-title">⚠️ IMPORTANT LEGAL NOTICE</h2>
+    </div>
+    <div class="legal-content" id="legal-content">
+      <div class="warning-banner">
+        <strong>COPYRIGHT COMPLIANCE REQUIRED</strong>
+      </div>
 
-  <div class="row">
-    <a href="https://tauri.app" target="_blank">
-      <img src="/assets/tauri.svg" class="logo tauri" alt="Tauri logo" />
-    </a>
-    <a href="https://angular.io" target="_blank">
-      <img src="/assets/angular.svg" class="logo angular" alt="Angular logo" />
-    </a>
+      <div class="legal-section">
+        <h3>📋 User Responsibilities</h3>
+        <ul>
+          <li><strong>Copyright Verification:</strong> You must ensure you have legal rights to download any content</li>
+          <li><strong>Platform Terms:</strong> Downloading may violate YouTube, Vimeo, and other platform terms of service</li>
+          <li><strong>Legal Compliance:</strong> You are solely responsible for compliance with all applicable laws</li>
+        </ul>
+      </div>
+
+      <div class="legal-section">
+        <h3>🎓 Educational Purpose Only</h3>
+        <p>This application is provided for educational and research purposes. The "educational" designation does not provide blanket protection from copyright infringement claims.</p>
+      </div>
+
+      <div class="legal-section">
+        <h3>⚖️ Legal Disclaimer</h3>
+        <p><strong>NO WARRANTY:</strong> This software is provided "as is" without warranty of any kind.</p>
+        <p><strong>LIABILITY:</strong> The developers assume no responsibility for legal consequences of using this software.</p>
+        <p><strong>DMCA COMPLIANCE:</strong> Users must comply with the Digital Millennium Copyright Act and similar laws.</p>
+      </div>
+
+      <div class="legal-section">
+        <h3>✅ Your Agreement</h3>
+        <p>By clicking "I Accept," you acknowledge that:</p>
+        <ul>
+          <li>You understand the legal risks and responsibilities</li>
+          <li>You will only download content you have rights to access</li>
+          <li>You will comply with all applicable laws and platform terms</li>
+          <li>You use this software at your own risk</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="legal-actions">
+      <button class="btn-reject" (click)="rejectTerms()" aria-label="Reject terms and close application">
+        I Do Not Accept
+      </button>
+      <button class="btn-accept" (click)="acceptTerms()" aria-label="Accept terms and continue to application">
+        I Understand and Accept Responsibility
+      </button>
+    </div>
   </div>
-  <p>Click on the logos to learn more about the frameworks</p>
+</div>
 
-  <form class="row" (submit)="greet($event, greetInput.value)">
-    <input #greetInput id="greet-input" placeholder="Enter a name..." />
-    <button type="submit">Greet</button>
-  </form>
-  <p>{{ greetingMessage }}</p>
+<!-- Party Animation Container -->
+<div class="party-container" #partyContainer>
+  <!-- Floating particles will be dynamically added here -->
+</div>
+
+<main class="container" [class.blurred]="showLegalNotice">
+  <div class="header">
+    <h1>BeatBurst</h1>
+   
+    <div class="legal-reminder" *ngIf="userAcceptedTerms">
+      <small>⚖️ Remember: Only download content you have rights to access</small>
+    </div>
+  </div>
+
+  <div class="converter-card">
+    <form class="url-form" (ngSubmit)="onDownload()" #downloadForm="ngForm">
+      <div class="input-group">
+        <label for="video-url">Video URL</label>
+        <input
+          id="video-url"
+          type="url"
+          [(ngModel)]="videoUrl"
+          name="videoUrl"
+          placeholder="https://example.com/video..."
+          (input)="onUrlChange()"
+          [class.valid]="isUrlValid"
+          [class.invalid]="videoUrl && !isUrlValid"
+          required
+          aria-label="Video URL input"
+          aria-describedby="url-help url-validation"
+          [attr.aria-invalid]="videoUrl && !isUrlValid"
+          autocomplete="url"
+        />
+        @if (videoUrl) {
+          <div id="url-validation" class="url-validation" role="status" aria-live="polite">
+            <span class="validation-icon" [class.valid]="isUrlValid" [class.invalid]="!isUrlValid">
+              {{ isUrlValid ? '✓' : '✗' }}
+            </span>
+            <span class="validation-text">
+              {{ isUrlValid ? 'Valid video URL' : 'Invalid video URL' }}
+            </span>
+          </div>
+        }
+       
+      </div>
+
+      <button
+        type="submit"
+        class="download-btn"
+        [disabled]="!isUrlValid || isDownloading"
+        [attr.aria-label]="isDownloading ? 'Converting video to MP3, please wait' : 'Convert video to MP3'"
+        [attr.aria-describedby]="errorMessage ? 'error-message' : successMessage ? 'success-message' : null"
+      >
+        @if (!isDownloading) {
+          <span>Convert to MP3</span>
+        }
+        @if (isDownloading) {
+          <span>
+            <span class="spinner" aria-hidden="true"></span>
+            Converting...
+          </span>
+        }
+      </button>
+    </form>
+
+    <!-- Progress Section -->
+    @if (downloadProgress) {
+      <div class="progress-section" role="status" aria-live="polite" aria-label="Download progress">
+        <div class="progress-info">
+          <h3>{{ downloadProgress.stage | titlecase }}</h3>
+          <p>{{ downloadProgress.message }}</p>
+        </div>
+        <div class="progress-bar" role="progressbar"
+             [attr.aria-valuenow]="downloadProgress.progress"
+             aria-valuemin="0"
+             aria-valuemax="100"
+             [attr.aria-label]="'Download progress: ' + downloadProgress.progress.toFixed(0) + '%'">
+          <div
+            class="progress-fill"
+            [style.width.%]="downloadProgress.progress"
+          ></div>
+        </div>
+        <div class="progress-percentage" aria-hidden="true">
+          {{ downloadProgress.progress.toFixed(0) }}%
+        </div>
+      </div>
+    }
+
+    <!-- Error Message -->
+    @if (errorMessage) {
+      <div id="error-message" class="message error" role="alert" aria-live="assertive">
+        <div class="message-icon" aria-hidden="true">⚠️</div>
+        <div class="message-text">{{ errorMessage }}</div>
+      </div>
+    }
+
+    <!-- Success Message -->
+    @if (successMessage) {
+      <div id="success-message" class="message success" role="status" aria-live="polite">
+        <div class="message-icon" aria-hidden="true">✅</div>
+        <div class="message-text">{{ successMessage }}</div>
+      </div>
+    }
+  </div>
 </main>
