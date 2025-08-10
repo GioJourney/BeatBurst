@@ -12,7 +12,7 @@ BeatBurst is a modern, cross-platform desktop application that allows users to c
 ## 🛠️ Technologies Used
 
 ### Frontend
-- **[Angular 18](https://angular.io/)** - Modern web framework with standalone components
+- **[Angular 20](https://angular.io/)** - Modern web framework with standalone components
 - **[TypeScript](https://www.typescriptlang.org/)** - Type-safe JavaScript with comprehensive interfaces
 - **[anime.js](https://animejs.com/)** - Lightweight animation library for party effects
 - **[RxJS](https://rxjs.dev/)** - Reactive programming for state management
