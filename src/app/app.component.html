@@ -60,7 +60,7 @@
 
 <main class="container" [class.blurred]="showLegalNotice">
   <div class="header">
-    <h1>BeatBurst</h1>
+    <h1>BeatBurst - Giovanni Loiacono</h1>
    
     <div class="legal-reminder" *ngIf="userAcceptedTerms">
       <small>⚖️ Remember: Only download content you have rights to access</small>
@@ -92,7 +92,7 @@
               {{ isUrlValid ? '✓' : '✗' }}
             </span>
             <span class="validation-text">
-              {{ isUrlValid ? 'Valid video URL' : 'Invalid video URL' }}
+              {{ isUrlValid ? 'Valid video URL' : 'Url invalido' }}
             </span>
           </div>
         }
@@ -103,16 +103,16 @@
         type="submit"
         class="download-btn"
         [disabled]="!isUrlValid || isDownloading"
-        [attr.aria-label]="isDownloading ? 'Converting video to MP3, please wait' : 'Convert video to MP3'"
+        [attr.aria-label]="isDownloading ? 'Conversione del file in mp3 in corso . . . ' : 'Converti in mp3'"
         [attr.aria-describedby]="errorMessage ? 'error-message' : successMessage ? 'success-message' : null"
       >
         @if (!isDownloading) {
-          <span>Convert to MP3</span>
+          <span>Converti in mp3</span>
         }
         @if (isDownloading) {
           <span>
             <span class="spinner" aria-hidden="true"></span>
-            Converting...
+            Conversione. . . 
           </span>
         }
       </button>

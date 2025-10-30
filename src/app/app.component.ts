@@ -29,7 +29,7 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
   // Legal compliance
   userAcceptedTerms = false;
   showLegalNotice = true;
-  readonly LEGAL_VERSION = '1.0.0';
+  readonly LEGAL_VERSION = '1.0.1';
 
   private subscriptions = new Subscription();
   private animations: AnimeInstance[] = [];
