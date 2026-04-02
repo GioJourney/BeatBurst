@@ -4,12 +4,12 @@
 
 BeatBurst is a modern, cross-platform desktop application that allows users to convert streaming media to MP3 format. Built with cutting-edge web technologies and featuring stunning party-style animations, BeatBurst provides a beautiful and intuitive user experience.
 
-## ⚠️ Legal Notice
+##  Legal Notice
 
 **IMPORTANT**: This application is provided for educational purposes only. Users are solely responsible for ensuring they have the legal right to download and convert any content. Please respect copyright laws and platform terms of service.
 
 
-## 🛠️ Technologies Used
+##  Technologies Used
 
 ### Frontend
 - **[Angular 20](https://angular.io/)** - Modern web framework with standalone components
@@ -34,7 +34,7 @@ BeatBurst is a modern, cross-platform desktop application that allows users to c
 - **Reactive State Management** - RxJS observables for real-time updates
 - **Component-Based Design** - Modular and reusable UI components
 
-## 📋 Prerequisites
+##  Prerequisites
 
 Before running this application, make sure you have the following installed:
 
@@ -47,14 +47,14 @@ Before running this application, make sure you have the following installed:
    - Install from [rustup.rs](https://rustup.rs/)
 
 3. **Media Downloader** (bundled with the application)
-   - ✅ **No manual installation required!**
+   -  **No manual installation required!**
    - Media downloader binaries are automatically downloaded and bundled with the application
    - Supports Windows, macOS, and Linux out of the box
 
 4. **Tauri Prerequisites**
    - Follow the [Tauri prerequisites guide](https://tauri.app/v1/guides/getting-started/prerequisites)
 
-## 🚀 Installation
+##  Installation
 
 1. **Clone the repository**
    ```bash
@@ -73,7 +73,7 @@ Before running this application, make sure you have the following installed:
    npm run setup
    ```
 
-## 🏃‍♂️ Running the Application
+##  Running the Application
 
 ### Development Mode
 
@@ -115,7 +115,7 @@ This will create a distributable application in the `src-tauri/target/release/bu
 - `npm run download-yt-dlp` - Download media processing binaries
 - `npm run setup` - Install dependencies and download binaries
 
-## 🎯 Usage
+##  Usage
 
 1. **Launch the application**
    - Run `npm run tauri dev` for development or install the built application
@@ -133,7 +133,7 @@ This will create a distributable application in the `src-tauri/target/release/bu
    - Monitor the progress through the real-time progress bar
    - The converted MP3 file will be saved to your Downloads folder
 
-## 🏗️ Technical Architecture
+##  Technical Architecture
 
 #### Frontend
 - `@angular/core`: ^18.0.0 - Core Angular framework
@@ -179,11 +179,11 @@ This will create a distributable application in the `src-tauri/target/release/bu
 
 
 
-## 📄 License
+##  License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
 
-## ⚖️ Legal Disclaimer
+##  Legal Disclaimer
 
 **IMPORTANT**: This application is for educational purposes only. Users must:
 - Respect copyright laws and platform Terms of Service
@@ -192,7 +192,7 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 The developers assume no liability for user actions or legal consequences.
 
-## 🙏 Acknowledgments
+##  Acknowledgments
 
 - **[Tauri](https://tauri.app/)** - For the excellent secure desktop app framework
 - **[Angular](https://angular.io/)** - For the powerful and modern frontend framework
@@ -201,7 +201,7 @@ The developers assume no liability for user actions or legal consequences.
 - **[Rust](https://www.rust-lang.org/)** - For memory safety and performance
 - **[TypeScript](https://www.typescriptlang.org/)** - For type safety and developer experience
 
-## 💡 Recommended IDE Setup
+##  Recommended IDE Setup
 
 **[VS Code](https://code.visualstudio.com/)** with the following extensions:
 - **[Tauri](https://marketplace.visualstudio.com/items?itemName=tauri-apps.tauri-vscode)** - Tauri development support
